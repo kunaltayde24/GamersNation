@@ -3,6 +3,8 @@ import Navbar from "./compontents/Navbar";
 import HomePage from "./pages/HomePage";
 import GameDetails from "./pages/GameDetails";
 import GamePage from "./pages/GamePage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 import "./App.css";
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/Games" element={<GameDetails />} />
         <Route path="/Games/:id" element={<GamePage />} />
+        <Route path="/about" element={<AboutPage/>} />
+        <Route path="/contact" element={<ContactPage/>} />
       </Routes>
     </>
   );
