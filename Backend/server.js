@@ -7,6 +7,16 @@ import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import gameRoutes from "./routes/gameRoutes.js";
 
+
+const DB = 'mongodb+srv://newUser:HnDf24GYB6oJnelR@cluster0.rlwrsrm.mongodb.net/mernstack?retryWrites=true&w=majority&appName=Cluster0'
+
+
+mongoose.connect(DB).then(() => {
+    console.log("MongoDB connected");
+}).catch((err) => {
+    console.log("MongoDB connection error:", err);
+});
+
 dotenv.config();
 connectDB();
 

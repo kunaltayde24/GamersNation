@@ -2,8 +2,13 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+// export const registerUser = async (req, res) => {
+//   const { username, email, password } = req.body;
+
 export const registerUser = async (req, res) => {
+  console.log("Incoming signup data:", req.body); // 👈 Add this line
   const { username, email, password } = req.body;
+
   
   try {
     const userExists = await User.findOne({ email });

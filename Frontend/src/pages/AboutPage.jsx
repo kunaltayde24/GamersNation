@@ -96,4 +96,4 @@ export default function AboutPage() {
     </div>
   );
 }
->>>>>>> 6a6761a85e5cfe8f82406582b62f2e4b83ec084a
+// >>>>>>> 6a6761a85e5cfe8f82406582b62f2e4b83ec084a
