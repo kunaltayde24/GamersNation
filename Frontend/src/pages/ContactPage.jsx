@@ -1,91 +1,118 @@
-import { useState } from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube, FaDiscord } from "react-icons/fa";
+import React, { useState } from 'react';
 
-export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Message Sent Successfully!");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    // Here, you can add your form submission logic, like sending an email or storing data.
+    alert('Form submitted!');
+    setFormData({ name: '', email: '', message: '' });
   };
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center">
+    <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <div className="relative w-full h-96 bg-cover bg-center flex flex-col items-center justify-center text-center" style={{ backgroundImage: "url('images/contact-bg.jpg')" }}>
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-        <h1 className="relative text-5xl font-extrabold text-yellow-400">Contact Us</h1>
-        <p className="relative text-lg text-gray-300 mt-3 max-w-2xl">We'd love to hear from you! Whether you have a question, feedback, or just want to chat about gaming, reach out to us.</p>
-      </div>
+      <section className="relative bg-cover bg-center h-96" style={{ backgroundImage: "url('/images/bgimage.jpg')" }}>
+        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div className="relative z-10 text-center p-20">
+          <h1 className="text-4xl font-bold">Contact Us</h1>
+          <p className="mt-4 text-lg">We'd love to hear from you!</p>
+        </div>
+      </section>
 
-      {/* Contact Details */}
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl text-center">
-        {[ 
-          { title: "Facebook", detail: "fb.com/gamersnation", icon: <FaFacebook /> },
-          { title: "Twitter", detail: "twitter.com/gamersnation", icon: <FaTwitter /> },
-          { title: "Instagram", detail: "instagram.com/gamersnation", icon: <FaInstagram /> },
-          { title: "Call Us", detail: "+1 234 567 890", icon: "📞" },
-          { title: "Email Us", detail: "support@gamersnation.com", icon: "📧" },
-          { title: "Visit Us", detail: "123 Gaming Street, NY, USA", icon: "📍" },
-        ].map((info, index) => (
-          <div key={index} className="p-6 bg-gray-800 rounded-lg shadow-lg flex flex-col items-center">
-            <span className="text-4xl text-yellow-400">{info.icon}</span>
-            <h3 className="text-xl font-bold mt-3">{info.title}</h3>
-            <p className="text-gray-400 mt-1">{info.detail}</p>
+      {/* Contact Form Section */}
+      <section className="px-8 py-20 bg-gray-900">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-semibold mb-8">Get in Touch</h2>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-lg font-medium">Your Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="mt-2 p-3 w-full bg-gray-700 border border-gray-600 text-white rounded-lg"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-lg font-medium">Your Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="mt-2 p-3 w-full bg-gray-700 border border-gray-600 text-white rounded-lg"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-lg font-medium">Your Message</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                className="mt-2 p-3 w-full bg-gray-700 border border-gray-600 text-white rounded-lg"
+                placeholder="Enter your message"
+                rows="4"
+                required
+              />
+            </div>
+
+            <button type="submit" className="w-full bg-yellow-500 text-black p-3 rounded-lg text-lg font-semibold">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Contact Info Section */}
+      <section className="bg-gray-800 py-16">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-semibold mb-8">Our Contact Info</h2>
+          <p className="text-lg text-gray-300 mb-4">You can reach us at the following:</p>
+          <p className="text-lg text-gray-300 mb-4">Email: <a href="mailto:contact@gamersnation.com" className="text-yellow-500">contact@gamersnation.com</a></p>
+          <div className="flex justify-center gap-8">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <img src="/images/facebook-icon.png" alt="Facebook" className="w-8 h-8" />
+            </a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+              <img src="/images/twitter-icon.png" alt="Twitter" className="w-8 h-8" />
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <img src="/images/instagram-icon.png" alt="Instagram" className="w-8 h-8" />
+            </a>
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
 
-      {/* Contact Form */}
-      <div className="mt-12 w-full max-w-3xl bg-gray-800 p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-semibold text-center mb-6">💬 Drop Us a Message</h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your Name"
-            className="w-full p-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Your Email"
-            className="w-full p-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            required
-          />
-          <input
-            type="text"
-            name="subject"
-            value={formData.subject}
-            onChange={handleChange}
-            placeholder="Subject"
-            className="w-full p-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            required
-          />
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Your Message"
-            rows="5"
-            className="w-full p-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            required
-          ></textarea>
-          <button type="submit" className="w-full p-3 bg-yellow-400 text-gray-900 font-bold rounded-lg hover:bg-yellow-500">
-            Send Message
-          </button>
-        </form>
-      </div>
+      {/* Footer Section */}
+      <footer className="bg-black text-white text-center py-4">
+        <p>&copy; 2025 GamersNation. All Rights Reserved.</p>
+      </footer>
     </div>
   );
-}
+};
+
+export default ContactPage;
